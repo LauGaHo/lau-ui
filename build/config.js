@@ -1,6 +1,10 @@
+/**
+ * webpack 的基础配置文件
+ */
 var path = require('path');
 var fs = require('fs');
 var nodeExternals = require('webpack-node-externals');
+// 加载组件配置 JSON 文件，key 为组件名，value 为组件文件路径
 var Components = require('../components.json');
 
 var utilsList = fs.readdirSync(path.resolve(__dirname, '../src/utils'));
@@ -12,6 +16,7 @@ Object.keys(Components).forEach(function(key) {
   externals[`element-ui/packages/${key}`] = `element-ui/lib/${key}`;
 });
 
+// 配置 webpack 打包配置选项 external
 externals['element-ui/src/locale'] = 'element-ui/lib/locale';
 utilsList.forEach(function(file) {
   file = path.basename(file, '.js');
@@ -32,6 +37,7 @@ externals = [Object.assign({
 
 exports.externals = externals;
 
+// 配置 webpack 的 alias 配置项
 exports.alias = {
   main: path.resolve(__dirname, '../src'),
   packages: path.resolve(__dirname, '../packages'),

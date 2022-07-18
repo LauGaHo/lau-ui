@@ -1,3 +1,7 @@
+/**
+ * ElementUI 官网项目的打包配置
+ */
+
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');

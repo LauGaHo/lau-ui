@@ -1,3 +1,8 @@
+/**
+ * 多入口 webpack 打包配置 (用于按需引入)
+ * 每个组件打包成一个 CommonJS2 模块化的 JS 文件
+ */
+
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');

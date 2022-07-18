@@ -1,3 +1,7 @@
+/**
+ * 将整个组件库打包成一个 UMD 模块化的 JS 文件
+ */
+
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');

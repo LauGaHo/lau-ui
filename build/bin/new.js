@@ -13,12 +13,18 @@ if (!process.argv[2]) {
 const path = require('path');
 const fs = require('fs');
 const fileSave = require('file-save');
+// 字符串转换函数，破折号转到小驼峰命名法
 const uppercamelcase = require('uppercamelcase');
+// 获取新增的组件名字
 const componentname = process.argv[2];
+// 获取新增组件的中文名字
 const chineseName = process.argv[3] || componentname;
+// 将组件名字转成小驼峰命名法
 const ComponentName = uppercamelcase(componentname);
+// 获取新创建组件文件所在的文件夹路径
 const PackagePath = path.resolve(__dirname, '../../packages', componentname);
 const Files = [
+  // 组件的 index.js 文件模板
   {
     filename: 'index.js',
     content: `import ${ComponentName} from './src/main';
@@ -30,6 +36,7 @@ ${ComponentName}.install = function(Vue) {
 
 export default ${ComponentName};`
   },
+  // 组件的 main.vue 文件
   {
     filename: 'src/main.vue',
     content: `<template>
@@ -42,6 +49,7 @@ export default {
 };
 </script>`
   },
+  // 组件各种语言的说明文档
   {
     filename: path.join('../../examples/docs/zh-CN', `${componentname}.md`),
     content: `## ${ComponentName} ${chineseName}`
@@ -58,6 +66,7 @@ export default {
     filename: path.join('../../examples/docs/fr-FR', `${componentname}.md`),
     content: `## ${ComponentName}`
   },
+  // 组件测试文件
   {
     filename: path.join('../../test/unit/specs', `${componentname}.spec.js`),
     content: `import { createTest, destroyVM } from '../util';
@@ -76,6 +85,7 @@ describe('${ComponentName}', () => {
 });
 `
   },
+  // 组件样式文件
   {
     filename: path.join('../../packages/theme-chalk/src', `${componentname}.scss`),
     content: `@import "mixins/mixins";
@@ -84,6 +94,7 @@ describe('${ComponentName}', () => {
 @include b(${componentname}) {
 }`
   },
+  // 组件 types 类型提醒文件
   {
     filename: path.join('../../types', `${componentname}.d.ts`),
     content: `import { ElementUIComponent } from './component'
