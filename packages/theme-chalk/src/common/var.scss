@@ -976,7 +976,7 @@ $--descriptions-title-font-size: 16px !default;
 $--descriptions-table-border: 1px solid $--border-color-lighter !default;
 $--descriptions-item-bordered-label-background: #fafafa !default;
 
-/* Skeleton 
+/* Skeleton
 --------------------------*/
 $--skeleton-color: #f2f2f2 !default;
 $--skeleton-to-color: #e6e6e6 !default;
@@ -997,6 +997,14 @@ $--result-info-color: $--color-info !default;
 $--result-success-color: $--color-success !default;
 $--result-warning-color: $--color-warning !default;
 $--result-danger-color: $--color-danger !default;
+
+/* Resize
+-------------------------------*/
+$--resize-item-small-size: 5px !default;
+$--resize-item-medium-size: 7px !default;
+$--resize-item-large-size: 9px !default;
+$--resize-item-background: transparent !default;
+$--resize-item-border: 1px #000000 solid !default;
 
 /* Break-point
 --------------------------*/

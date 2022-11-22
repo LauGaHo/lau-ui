@@ -1,5 +1,88 @@
 @import "mixins/mixins";
 @import "common/var";
 
+$sizes: small, medium, large;
+
+$size-map: (
+        small: $--resize-item-small-size,
+        medium: $--resize-item-medium-size,
+        large: $--resize-item-large-size
+);
+
+@mixin item-size($key, $value) {
+
+  @include m($key) {
+    height: $value;
+    width: $value;
+
+    @include item-direction($value);
+  }
+
+}
+
+@mixin item-direction($size) {
+
+  @include when(n) {
+    left: calc(50% - #{$size});
+    top: -#{$size};
+    cursor: n-resize;
+  }
+
+  @include when(s) {
+    left: calc(50% - #{$size});
+    top: -#{$size};
+    cursor: s-resize;
+  }
+
+  @include when(w) {
+    left: -#{$size};
+    top: calc(50% - #{$size});
+    cursor: w-resize;
+  }
+
+  @include when(e) {
+    right: -#{$size};
+    top: calc(50% - #{$size});
+    cursor: e-resize;
+  }
+
+  @include when(nw) {
+    left: -#{$size};
+    top: -#{$size};
+    cursor: nw-resize;
+  }
+
+  @include when(sw) {
+    left: -#{$size};
+    bottom: -#{$size};
+    cursor: sw-resize;
+  }
+
+  @include when(ne) {
+    right: -#{$size};
+    top: -#{$size};
+    cursor: ne-resize;
+  }
+
+  @include when(se) {
+    right: -#{$size};
+    bottom: -#{$size};
+    cursor: se-resize;
+  }
+}
+
 @include b(resize) {
+
+  @include e(item) {
+
+    position: absolute;
+    border: $--resize-item-border;
+    background: $--resize-item-background;
+
+    @each $key, $value in $size-map {
+      @include item-size($key, $value);
+    }
+
+  }
+
 }
